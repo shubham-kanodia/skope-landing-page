@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
+/* Design tokens — see BRAND.md. Raw vars kept for use inside SVG/inline styles. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0b0f1c;
+  --slate: #151c2e;
+  --hairline: #232b40;
+  --paper: #f2f5fa;
+  --mist: #95a1b8;
+  --lens: #2bd9c7;
+  --signal: #6e5bff;
+  --amber: #ffb454;
+  --gradient-brand: linear-gradient(120deg, var(--lens), var(--signal));
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-ink: var(--ink);
+  --color-slate: var(--slate);
+  --color-hairline: var(--hairline);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-lens: var(--lens);
+  --color-signal: var(--signal);
+  --color-amber: var(--amber);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* Type scale: 13 / 15 / 17 / 22 / 32 / 44 / 64 (H1 clamps to 38 on mobile) */
+  --text-xs: 13px;
+  --text-sm: 15px;
+  --text-base: 17px;
+  --text-lg: 22px;
+  --text-xl: 32px;
+  --text-2xl: 44px;
+  --text-3xl: 64px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--signal);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 112;
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Scroll reveals (BRAND.md motion rules) — hidden only after JS takes over */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 350ms ease-out,
+    transform 350ms ease-out;
+}
+
+.reveal-pending.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero load sequence (spec A4): CSS-driven so the LCP headline never waits on JS */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: hero-enter 400ms ease-out forwards;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+@keyframes hero-enter {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero aperture ring draws in on load (spec A4: 500ms stroke draw) */
+.aperture-ring {
+  stroke-dasharray: 503; /* 2πR, R=80 */
+  stroke-dashoffset: 0;
+  animation: aperture-draw 500ms ease-out;
+}
+
+@keyframes aperture-draw {
+  from {
+    stroke-dashoffset: 503;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aperture-ring {
+    animation: none;
+  }
+}
+
+/* Countdown digits: 200ms mono roll on change (spec A4.3) */
+.digit-roll {
+  animation: digit-roll 200ms ease-out;
+}
+
+@keyframes digit-roll {
+  from {
+    transform: translateY(-0.35em);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digit-roll {
+    animation: none;
+  }
+}
+
+/* Gradient text for headline accents */
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
