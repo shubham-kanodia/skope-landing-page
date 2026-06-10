@@ -11,7 +11,8 @@ const enter = (delay: number): CSSProperties =>
 export function Hero() {
   return (
     <section className="bg-surface-dark">
-      <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-16 lg:pb-28 lg:pt-24">
+      {/* Fill the viewport below the 64px nav so the fold never shows the next band */}
+      <div className="mx-auto flex min-h-[calc(100svh-64px)] w-full max-w-[1200px] flex-col justify-center px-6 py-16">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
           <div className="min-w-0">
             <p
