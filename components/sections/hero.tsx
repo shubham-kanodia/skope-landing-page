@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { HeroAperture } from "@/components/aperture/hero-aperture";
-import { InstallSnippet } from "@/components/ui/install-snippet";
 
 const SIGNUP_URL = "https://app.skope.network/signup";
 
@@ -59,12 +58,9 @@ export function Hero() {
             </p>
           </div>
 
-          <div className="hero-enter min-w-0" style={enter(0.7)}>
-            <div className="rounded-3xl border border-white/[0.06] bg-elevated p-6 sm:p-8">
+          <div className="hero-enter min-w-0 lg:justify-self-end" style={enter(0.7)}>
+            <div className="w-full max-w-[560px]">
               <HeroAperture />
-              <div className="mt-6">
-                <InstallSnippet />
-              </div>
             </div>
           </div>
         </div>

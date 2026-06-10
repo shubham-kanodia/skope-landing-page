@@ -121,14 +121,14 @@
 
 /* Hero aperture ring draws in on load (spec A4: 500ms stroke draw) */
 .aperture-ring {
-  stroke-dasharray: 503; /* 2πR, R=80 */
+  stroke-dasharray: var(--ring-len, 503); /* 2πR, set per component */
   stroke-dashoffset: 0;
   animation: aperture-draw 500ms ease-out;
 }
 
 @keyframes aperture-draw {
   from {
-    stroke-dashoffset: 503;
+    stroke-dashoffset: var(--ring-len, 503);
   }
   to {
     stroke-dashoffset: 0;
