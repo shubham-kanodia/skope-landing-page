@@ -36,39 +36,49 @@ export function Scanner() {
     }
   };
 
+  const inputClass =
+    "h-12 w-full rounded-xl border border-hairline bg-canvas px-4 text-[15px] text-ink placeholder:text-muted-soft focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary";
+
   return (
-    <section id="scanner" className="border-t border-hairline">
-      <div className="mx-auto max-w-3xl px-6 py-24 text-center">
-        <Reveal>
-          <h2 className="text-[clamp(28px,4vw,44px)]">
-            Is your site DPDP-ready? Find out in 60 seconds.
-          </h2>
-        </Reveal>
-        <Reveal index={1}>
-          <p className="mx-auto mt-5 max-w-[68ch] text-sm text-mist">
-            We scan your site for trackers, pre-consent cookies, notice coverage, and language
-            support — then email you the full readiness report.
-          </p>
-        </Reveal>
+    <section id="scanner" className="bg-surface-soft">
+      <div className="mx-auto max-w-[1200px] px-6 py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <Reveal>
+            <h2 className="text-[clamp(32px,4vw,52px)]">
+              Is your site DPDP-ready? Find out in 60 seconds.
+            </h2>
+          </Reveal>
+          <Reveal index={1}>
+            <p className="mx-auto mt-5 max-w-[58ch] text-[15px]">
+              We scan your site for trackers, pre-consent cookies, notice coverage, and language
+              support — then email you the full readiness report.
+            </p>
+          </Reveal>
+        </div>
 
         <Reveal index={2}>
           {status === "done" ? (
-            <div className="mx-auto mt-10 max-w-xl rounded-xl border border-lens/40 bg-slate p-8 text-left">
-              <p className="font-mono text-xs text-lens">REPORT QUEUED</p>
-              <h3 className="mt-3 text-lg font-semibold text-paper">Your report is on its way.</h3>
-              <p className="mt-2 text-sm text-mist">
-                We&apos;ll scan <span className="font-mono text-paper">{scannedDomain}</span> and
-                email the full DPDP readiness report to you.
+            <div className="mx-auto mt-12 max-w-xl rounded-3xl bg-canvas p-8 text-left">
+              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-primary">
+                Report queued
+              </p>
+              <h3 className="mt-3 text-lg font-semibold text-ink">Your report is on its way.</h3>
+              <p className="mt-2 text-[15px]">
+                We&apos;ll scan <span className="font-mono text-sm text-ink">{scannedDomain}</span>{" "}
+                and email the full DPDP readiness report to you.
               </p>
               <a
                 href="https://app.skope.network/signup"
-                className="mt-6 inline-block rounded-lg bg-lens px-5 py-2.5 text-sm font-medium text-ink transition-shadow hover:shadow-[0_0_20px_rgba(43,217,199,0.35)]"
+                className="mt-7 inline-flex h-12 items-center rounded-full bg-primary px-7 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active"
               >
-                Fix it in 30 minutes → Start free
+                Fix it in 30 minutes — start free
               </a>
             </div>
           ) : (
-            <form onSubmit={submit} className="mx-auto mt-10 flex max-w-xl flex-col gap-3">
+            <form
+              onSubmit={submit}
+              className="mx-auto mt-12 flex max-w-xl flex-col gap-3 rounded-3xl bg-canvas p-8"
+            >
               <label className="sr-only" htmlFor="scan-domain">
                 Your website domain
               </label>
@@ -80,7 +90,7 @@ export function Scanner() {
                 onChange={(e) => setDomain(e.target.value)}
                 placeholder="yourstore.in"
                 autoComplete="url"
-                className="rounded-lg border border-hairline bg-slate px-4 py-3 font-mono text-sm text-paper placeholder:text-mist/50"
+                className={inputClass}
               />
               <label className="sr-only" htmlFor="scan-email">
                 Your email
@@ -93,21 +103,21 @@ export function Scanner() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.in"
                 autoComplete="email"
-                className="rounded-lg border border-hairline bg-slate px-4 py-3 font-mono text-sm text-paper placeholder:text-mist/50"
+                className={inputClass}
               />
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="rounded-lg bg-lens px-6 py-3 text-sm font-medium text-ink transition-shadow hover:shadow-[0_0_24px_rgba(43,217,199,0.35)] disabled:opacity-60"
+                className="mt-1 inline-flex h-12 items-center justify-center rounded-full bg-primary px-7 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active disabled:bg-[#a8b8cc]"
               >
                 {status === "submitting" ? "Queuing your scan…" : "Scan my website"}
               </button>
               {error && (
-                <p role="alert" className="text-sm text-amber">
+                <p role="alert" className="text-sm text-[#cf202f]">
                   {error}
                 </p>
               )}
-              <p className="text-xs text-mist">
+              <p className="text-[13px] text-body">
                 One scan per site. We email the report — nothing else, no spam.
               </p>
             </form>

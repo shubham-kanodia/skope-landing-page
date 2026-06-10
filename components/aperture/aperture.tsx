@@ -33,17 +33,25 @@ export function bladePaths(
   return paths;
 }
 
+const TONES = {
+  dark: { ring: "rgba(255,255,255,0.16)", blade: "#16181c", edge: "#3c7dff" },
+  light: { ring: "#dee1e6", blade: "#eef0f3", edge: "#0052ff" },
+};
+
 /** Static aperture mark — logo, dividers, favicon source. */
 export function ApertureMark({
   open = 0.55,
   size = 24,
+  tone = "dark",
   className,
 }: {
   open?: number;
   size?: number;
+  tone?: keyof typeof TONES;
   className?: string;
 }) {
   const paths = bladePaths(open, 50, 50, 46, 30);
+  const c = TONES[tone];
   return (
     <svg
       width={size}
@@ -52,9 +60,9 @@ export function ApertureMark({
       aria-hidden="true"
       className={className}
     >
-      <circle cx="50" cy="50" r="46" fill="none" stroke="var(--hairline)" strokeWidth="3" />
+      <circle cx="50" cy="50" r="46" fill="none" stroke={c.ring} strokeWidth="3" />
       {paths.map((d, i) => (
-        <path key={i} d={d} fill="var(--slate)" stroke="var(--lens)" strokeWidth="1.5" />
+        <path key={i} d={d} fill={c.blade} stroke={c.edge} strokeWidth="1.5" />
       ))}
     </svg>
   );

@@ -18,17 +18,17 @@ function remaining(target: number, now: number) {
 function Digit({ value, label }: { value: number; label: string }) {
   const text = String(value).padStart(2, "0");
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="rounded-lg border border-hairline bg-slate px-3 py-2 sm:px-5 sm:py-4">
+    <div className="flex flex-col items-center gap-3">
+      <div className="rounded-2xl border border-white/[0.06] bg-elevated px-4 py-3 sm:px-6 sm:py-5">
         <span
           // Re-keying remounts the span so the roll animation replays per tick
           key={text}
-          className="digit-roll inline-block font-mono text-2xl tabular-nums text-amber sm:text-4xl"
+          className="digit-roll inline-block font-mono text-3xl font-medium tabular-nums text-white sm:text-5xl"
         >
           {text}
         </span>
       </div>
-      <span className="font-mono text-xs text-mist">{label}</span>
+      <span className="font-mono text-xs text-muted">{label}</span>
     </div>
   );
 }
@@ -50,9 +50,9 @@ export function Countdown() {
   const cmDays = remaining(CONSENT_MANAGER, now ?? CONSENT_MANAGER).days;
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-8">
       <div
-        className="flex items-start gap-3 sm:gap-5"
+        className="flex items-start gap-3 sm:gap-4"
         role="timer"
         aria-label={`${t.days} days until full DPDP enforcement on 13 May 2027`}
       >
@@ -61,9 +61,11 @@ export function Countdown() {
         <Digit value={t.minutes} label="min" />
         <Digit value={t.seconds} label="sec" />
       </div>
-      <p className="font-mono text-xs text-mist">
-        FULL ENFORCEMENT · 13 MAY 2027{" "}
-        <span className="text-amber">· CONSENT MANAGER FRAMEWORK IN {cmDays} DAYS (13 NOV 2026)</span>
+      <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
+        Full enforcement · 13 May 2027{" "}
+        <span className="text-on-dark-soft">
+          · Consent Manager framework in {cmDays} days (13 Nov 2026)
+        </span>
       </p>
     </div>
   );

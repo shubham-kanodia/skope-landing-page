@@ -54,10 +54,10 @@ export function Faq() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Reveal>
-        <h2 className="text-[clamp(28px,4vw,44px)]">Questions, answered straight.</h2>
+        <h2 className="text-[clamp(32px,4vw,52px)]">Questions, answered straight.</h2>
       </Reveal>
       <Reveal index={1}>
-        <div className="mt-10 border-t border-hairline">
+        <div className="mt-12 border-t border-hairline">
           {FAQS.map((f) => (
             <AccordionItem key={f.q} question={f.q} answer={f.a} />
           ))}

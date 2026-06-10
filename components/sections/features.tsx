@@ -29,13 +29,13 @@ const FEATURES = [
 
 export function Features() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
-      <div className="grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3">
+    <section className="mx-auto max-w-[1200px] px-6 py-24">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map((f, i) => (
-          <Reveal key={f.title} index={i} className="bg-ink">
-            <div className="h-full bg-slate/40 p-8">
-              <h3 className="text-base font-semibold text-paper">{f.title}</h3>
-              <p className="mt-3 max-w-[68ch] text-sm text-mist">{f.body}</p>
+          <Reveal key={f.title} index={i}>
+            <div className="h-full rounded-3xl border border-hairline p-8">
+              <h3 className="text-lg font-semibold text-ink">{f.title}</h3>
+              <p className="mt-2.5 text-[15px]">{f.body}</p>
             </div>
           </Reveal>
         ))}

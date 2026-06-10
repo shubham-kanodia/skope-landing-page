@@ -10,50 +10,64 @@ const enter = (delay: number): CSSProperties =>
 
 export function Hero() {
   return (
-    <section className="mx-auto flex max-w-6xl flex-col items-center px-6 pb-20 pt-16 text-center sm:pt-24">
-      <p className="hero-enter font-mono text-xs tracking-wide text-amber" style={enter(0.5)}>
-        DPDP RULES ARE LIVE · FULL ENFORCEMENT 13 MAY 2027
-      </p>
+    <section className="bg-surface-dark">
+      <div className="mx-auto max-w-[1200px] px-6 pb-24 pt-16 lg:pb-28 lg:pt-24">
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
+          <div className="min-w-0">
+            <p
+              className="hero-enter inline-flex rounded-full bg-white/[0.08] px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.06em] text-on-dark-soft sm:whitespace-nowrap"
+              style={enter(0.5)}
+            >
+              DPDP rules are live · full enforcement 13 May 2027
+            </p>
 
-      <h1 className="hero-enter mt-6 max-w-4xl text-[clamp(38px,6vw,64px)]" style={enter(0.6)}>
-        India&apos;s data law applies to you. <span className="gradient-text">Yes, you.</span>
-      </h1>
+            <h1
+              className="hero-enter mt-7 text-[clamp(38px,4.6vw,60px)] leading-[1.04] tracking-[-0.03em] text-white"
+              style={enter(0.6)}
+            >
+              India&apos;s data law applies to you.{" "}
+              <span className="text-primary-on-dark">Yes, you.</span>
+            </h1>
 
-      <p className="hero-enter mt-6 max-w-[68ch] text-base text-mist" style={enter(0.75)}>
-        Skope is the DPDP consent kit for small teams. One script tag. Bilingual banner,
-        purpose-wise consent, audit-proof records. Live in 30 minutes — no demo calls, no
-        lawyers on retainer.
-      </p>
+            <p
+              className="hero-enter mt-6 max-w-[46ch] text-[17px] leading-relaxed text-on-dark-soft"
+              style={enter(0.75)}
+            >
+              Skope is the DPDP consent kit for small teams. One script tag. Bilingual banner,
+              purpose-wise consent, audit-proof records. Live in 30 minutes — no demo calls, no
+              lawyers on retainer.
+            </p>
 
-      <div
-        className="hero-enter mt-8 flex flex-wrap items-center justify-center gap-4"
-        style={enter(0.85)}
-      >
-        <a
-          href={SIGNUP_URL}
-          className="rounded-lg bg-lens px-6 py-3 text-sm font-medium text-ink transition-shadow hover:shadow-[0_0_24px_rgba(43,217,199,0.35)]"
-        >
-          Start free — 5 min setup
-        </a>
-        <a
-          href="#scanner"
-          className="rounded-lg border border-hairline px-6 py-3 text-sm font-medium text-paper transition-colors hover:border-lens hover:text-lens"
-        >
-          Scan my website
-        </a>
+            <div className="hero-enter mt-9 flex flex-wrap items-center gap-3" style={enter(0.85)}>
+              <a
+                href={SIGNUP_URL}
+                className="inline-flex h-14 items-center rounded-full bg-primary px-8 text-base font-semibold text-white transition-colors hover:bg-primary-active"
+              >
+                Start free
+              </a>
+              <a
+                href="#scanner"
+                className="inline-flex h-14 items-center rounded-full border border-white/25 px-8 text-base font-semibold text-white transition-colors hover:border-white/60"
+              >
+                Scan my website
+              </a>
+            </div>
+
+            <p className="hero-enter mt-8 text-[13px] text-muted" style={enter(1.0)}>
+              Built for WordPress · Shopify · custom sites · Made in India · Data stored in India
+            </p>
+          </div>
+
+          <div className="hero-enter min-w-0" style={enter(0.7)}>
+            <div className="rounded-3xl border border-white/[0.06] bg-elevated p-6 sm:p-8">
+              <HeroAperture />
+              <div className="mt-6">
+                <InstallSnippet />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="mt-14 w-full max-w-3xl">
-        <HeroAperture />
-      </div>
-
-      <div className="hero-enter mt-10 flex w-full justify-center" style={enter(1.0)}>
-        <InstallSnippet />
-      </div>
-
-      <p className="hero-enter mt-8 text-xs text-mist" style={enter(1.1)}>
-        Built for WordPress · Shopify · custom sites · Made in India 🇮🇳 · Data stored in India
-      </p>
     </section>
   );
 }

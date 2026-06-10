@@ -22,27 +22,31 @@ export function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-colors ${
-        scrolled ? "border-b border-hairline bg-ink/80 backdrop-blur-md" : "bg-transparent"
+      className={`sticky top-0 z-50 bg-surface-dark transition-shadow ${
+        scrolled ? "border-b border-white/[0.08]" : ""
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2 text-base font-medium text-paper">
-          <ApertureMark size={26} />
+      <nav className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6">
+        <a href="#" className="flex items-center gap-2.5 text-[17px] font-semibold text-white">
+          <ApertureMark size={26} tone="dark" />
           skope
         </a>
         <div className="hidden items-center gap-8 sm:flex">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-mist transition-colors hover:text-paper">
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm font-medium text-on-dark-soft transition-colors hover:text-white"
+            >
               {l.label}
             </a>
           ))}
         </div>
         <a
           href="https://app.skope.network/signup"
-          className="rounded-lg bg-lens px-4 py-2 text-sm font-medium text-ink transition-shadow hover:shadow-[0_0_20px_rgba(43,217,199,0.35)]"
+          className="inline-flex h-11 items-center rounded-full bg-primary px-5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active"
         >
-          Get compliant →
+          Get compliant
         </a>
       </nav>
     </header>

@@ -19,12 +19,12 @@ export function AccordionItem({
         aria-expanded={open}
         aria-controls={`${id}-panel`}
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left text-base font-medium text-paper transition-colors hover:text-lens"
+        className="flex w-full items-center justify-between gap-4 py-6 text-left text-base font-semibold text-ink"
       >
         {question}
         <span
           aria-hidden="true"
-          className={`shrink-0 font-mono text-mist transition-transform duration-200 ${open ? "rotate-45" : ""}`}
+          className={`shrink-0 text-xl font-normal text-muted transition-transform duration-200 ${open ? "rotate-45" : ""}`}
         >
           +
         </span>
@@ -37,7 +37,7 @@ export function AccordionItem({
         }`}
       >
         <div className="overflow-hidden">
-          <p className="max-w-[68ch] pb-5 text-sm text-mist">{answer}</p>
+          <p className="max-w-[64ch] pb-6 text-[15px]">{answer}</p>
         </div>
       </div>
     </div>

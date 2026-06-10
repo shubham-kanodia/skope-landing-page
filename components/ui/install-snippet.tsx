@@ -18,17 +18,17 @@ export function InstallSnippet() {
   };
 
   return (
-    <div className="flex w-full max-w-2xl items-center gap-3 rounded-lg border border-hairline bg-slate px-4 py-3">
-      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap font-mono text-xs text-mist [scrollbar-width:none]">
-        <span className="text-lens">&lt;script</span> src=
-        <span className="text-paper">&quot;https://cdn.skope.network/skope.js&quot;</span> data-site=
-        <span className="text-paper">&quot;sk_live_xxxx&quot;</span> defer
-        <span className="text-lens">&gt;&lt;/script&gt;</span>
+    <div className="flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-[#111418] py-3 pl-4 pr-3">
+      <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap font-mono text-xs text-on-dark-soft [scrollbar-width:none]">
+        <span className="text-on-dark-soft">&lt;script</span> src=
+        <span className="text-white">&quot;https://cdn.skope.network/skope.js&quot;</span> data-site=
+        <span className="text-white">&quot;sk_live_xxxx&quot;</span> defer
+        <span className="text-on-dark-soft">&gt;&lt;/script&gt;</span>
       </code>
       <button
         type="button"
         onClick={copy}
-        className="shrink-0 rounded-md border border-hairline px-3 py-1.5 font-mono text-xs text-paper transition-colors hover:border-lens hover:text-lens"
+        className="shrink-0 rounded-full border border-white/15 px-3.5 py-1.5 font-mono text-xs text-on-dark-soft transition-colors hover:border-white/40 hover:text-white"
         aria-label="Copy install snippet"
       >
         {copied ? "copied" : "copy"}

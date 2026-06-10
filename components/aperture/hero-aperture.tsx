@@ -14,6 +14,21 @@ const BLOCK_X = CX - R - 12; // where particles queue when the iris is shut
 const EXIT_X = 584;
 const TRACKERS = ["GA4", "Meta Pixel", "Hotjar"];
 
+// Palette for the dark product card (DESIGN.md: surface-dark-elevated layering)
+const C = {
+  panel: "#22262d",
+  panelEdge: "rgba(255,255,255,0.07)",
+  label: "#a8acb3",
+  lane: "rgba(255,255,255,0.10)",
+  dot: "#7c828a",
+  dotAllowed: "#3c7dff",
+  ring: "rgba(255,255,255,0.16)",
+  disc: "#0e1014",
+  blade: "#272c34",
+  bladeEdge: "rgba(255,255,255,0.22)",
+  glow: "#0052ff",
+};
+
 type Particle = {
   lane: number;
   x: number;
@@ -80,7 +95,7 @@ export function HeroAperture() {
         bladeRefs.current[i]?.setAttribute("d", paths[i]);
       }
       glowRef.current?.setAttribute("r", String(holePx));
-      glowRef.current?.setAttribute("opacity", String(0.14 * h));
+      glowRef.current?.setAttribute("opacity", String(0.2 * h));
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -110,7 +125,7 @@ export function HeroAperture() {
         if (el) {
           el.setAttribute("cx", p.x.toFixed(1));
           el.setAttribute("opacity", p.opacity.toFixed(2));
-          el.setAttribute("fill", p.x > CX ? "var(--lens)" : "var(--mist)");
+          el.setAttribute("fill", p.x > CX ? C.dotAllowed : C.dot);
         }
       }
       raf = requestAnimationFrame(frame);
@@ -155,20 +170,20 @@ export function HeroAperture() {
     <div className="w-full">
       <svg
         ref={svgRef}
-        viewBox="0 0 720 320"
+        viewBox="0 70 720 180"
         role="img"
         aria-label="Animation: data flowing from a website is blocked at a closed aperture until consent opens it"
         className="w-full h-auto"
       >
         {/* Stylized website, left */}
         <g>
-          <rect x="16" y="100" width="120" height="120" rx="10" fill="var(--slate)" stroke="var(--hairline)" />
-          <circle cx="32" cy="116" r="3" fill="var(--mist)" opacity="0.6" />
-          <circle cx="44" cy="116" r="3" fill="var(--mist)" opacity="0.6" />
-          <rect x="28" y="132" width="96" height="8" rx="4" fill="var(--hairline)" />
-          <rect x="28" y="148" width="72" height="8" rx="4" fill="var(--hairline)" />
-          <rect x="28" y="170" width="96" height="34" rx="6" fill="var(--ink)" stroke="var(--hairline)" />
-          <text x="76" y="191" textAnchor="middle" fontSize="11" fill="var(--mist)" fontFamily="var(--font-mono)">
+          <rect x="16" y="100" width="120" height="120" rx="14" fill={C.panel} stroke={C.panelEdge} />
+          <circle cx="34" cy="118" r="3" fill={C.label} opacity="0.5" />
+          <circle cx="46" cy="118" r="3" fill={C.label} opacity="0.5" />
+          <rect x="30" y="134" width="92" height="7" rx="3.5" fill="rgba(255,255,255,0.10)" />
+          <rect x="30" y="149" width="68" height="7" rx="3.5" fill="rgba(255,255,255,0.10)" />
+          <rect x="30" y="172" width="92" height="32" rx="9" fill="rgba(0,0,0,0.35)" />
+          <text x="76" y="192" textAnchor="middle" fontSize="10.5" fill={C.label} fontFamily="var(--font-geist-mono)">
             your site
           </text>
         </g>
@@ -181,10 +196,9 @@ export function HeroAperture() {
             y1={CY + dy}
             x2={EXIT_X}
             y2={CY + dy}
-            stroke="var(--hairline)"
+            stroke={C.lane}
             strokeWidth="1"
-            strokeDasharray="2 6"
-            opacity="0.5"
+            strokeDasharray="2 7"
           />
         ))}
 
@@ -198,14 +212,14 @@ export function HeroAperture() {
             cx={p.x}
             cy={CY + LANES[p.lane]}
             r="2.5"
-            fill="var(--mist)"
+            fill={C.dot}
           />
         ))}
 
         {/* The aperture */}
-        <circle cx={CX} cy={CY} r={R} fill="var(--slate)" />
-        <circle ref={glowRef} cx={CX} cy={CY} r={staticOpen * MAX_HOLE} fill="var(--lens)" opacity={0.14 * staticOpen} />
-        <circle className="aperture-ring" cx={CX} cy={CY} r={R} fill="none" stroke="var(--hairline)" strokeWidth="3" />
+        <circle cx={CX} cy={CY} r={R} fill={C.disc} />
+        <circle ref={glowRef} cx={CX} cy={CY} r={staticOpen * MAX_HOLE} fill={C.glow} opacity={0.2 * staticOpen} />
+        <circle className="aperture-ring" cx={CX} cy={CY} r={R} fill="none" stroke={C.ring} strokeWidth="2" />
         {staticPaths.map((d, i) => (
           <path
             key={i}
@@ -213,24 +227,23 @@ export function HeroAperture() {
               bladeRefs.current[i] = el;
             }}
             d={d}
-            fill="var(--slate)"
-            stroke="var(--lens)"
+            fill={C.blade}
+            stroke={C.bladeEdge}
             strokeWidth="1"
-            strokeOpacity="0.55"
           />
         ))}
 
         {/* Tracker chips, right */}
         {TRACKERS.map((name, i) => (
           <g key={name}>
-            <rect x={EXIT_X} y={CY + LANES[i] - 13} width="120" height="26" rx="6" fill="var(--slate)" stroke="var(--hairline)" />
+            <rect x={EXIT_X} y={CY + LANES[i] - 14} width="120" height="28" rx="14" fill={C.panel} stroke={C.panelEdge} />
             <text
               x={EXIT_X + 60}
               y={CY + LANES[i] + 4}
               textAnchor="middle"
-              fontSize="11"
-              fill="var(--mist)"
-              fontFamily="var(--font-mono)"
+              fontSize="10.5"
+              fill={C.label}
+              fontFamily="var(--font-geist-mono)"
             >
               {name}
             </text>
@@ -238,29 +251,29 @@ export function HeroAperture() {
         ))}
       </svg>
 
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
         <button
           type="button"
           role="switch"
           aria-checked={on}
           onClick={() => setOn(!on)}
-          className="group inline-flex items-center gap-3 rounded-full border border-hairline bg-slate px-4 py-2 text-sm text-paper transition-colors hover:border-lens/60"
+          className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] py-2 pl-3 pr-5 text-sm font-medium text-white transition-colors hover:border-white/25"
         >
           <span
             aria-hidden="true"
-            className={`relative h-5 w-9 rounded-full border transition-colors ${
-              on ? "border-lens bg-lens/30" : "border-hairline bg-ink"
+            className={`relative h-6 w-10 rounded-full transition-colors ${
+              on ? "bg-primary" : "bg-white/15"
             }`}
           >
             <span
-              className={`absolute top-0.5 h-3.5 w-3.5 rounded-full transition-all ${
-                on ? "left-[18px] bg-lens" : "left-0.5 bg-mist"
+              className={`absolute top-1 h-4 w-4 rounded-full bg-white transition-all ${
+                on ? "left-5" : "left-1"
               }`}
             />
           </span>
           Accept analytics
         </button>
-        <p className="font-mono text-xs text-mist" aria-live="polite">
+        <p className="font-mono text-xs text-on-dark-soft" aria-live="polite">
           {on ? "consent given — permitted data flows" : "blocked — nothing flows until consent"}
         </p>
       </div>

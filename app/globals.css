@@ -1,68 +1,77 @@
 @import "tailwindcss";
 
-/* Design tokens — see BRAND.md. Raw vars kept for use inside SVG/inline styles. */
+/* Design tokens — see DESIGN.md (visual system) and BRAND.md (voice). */
 :root {
-  --ink: #0b0f1c;
-  --slate: #151c2e;
-  --hairline: #232b40;
-  --paper: #f2f5fa;
-  --mist: #95a1b8;
-  --lens: #2bd9c7;
-  --signal: #6e5bff;
-  --amber: #ffb454;
-  --gradient-brand: linear-gradient(120deg, var(--lens), var(--signal));
+  --canvas: #ffffff;
+  --ink: #0a0b0d;
+  --body: #5b616e;
+  --muted: #7c828a;
+  --muted-soft: #a8acb3;
+  --hairline: #dee1e6;
+  --hairline-soft: #eef0f3;
+  --surface-soft: #f7f7f7;
+  --surface-strong: #eef0f3;
+  --surface-dark: #0a0b0d;
+  --surface-elevated: #16181c;
+  --surface-elevated-2: #22262d;
+  --primary: #0052ff;
+  --primary-active: #003ecc;
+  --primary-on-dark: #3c7dff; /* luminance-adjusted primary for dark surfaces */
+  --on-dark: #ffffff;
+  --on-dark-soft: #a8acb3;
+  --hairline-on-dark: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
+  --color-canvas: var(--canvas);
   --color-ink: var(--ink);
-  --color-slate: var(--slate);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
   --color-hairline: var(--hairline);
-  --color-paper: var(--paper);
-  --color-mist: var(--mist);
-  --color-lens: var(--lens);
-  --color-signal: var(--signal);
-  --color-amber: var(--amber);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-dark: var(--surface-dark);
+  --color-elevated: var(--surface-elevated);
+  --color-elevated-2: var(--surface-elevated-2);
+  --color-primary: var(--primary);
+  --color-primary-active: var(--primary-active);
+  --color-primary-on-dark: var(--primary-on-dark);
+  --color-on-dark-soft: var(--on-dark-soft);
 
-  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
-
-  /* Type scale: 13 / 15 / 17 / 22 / 32 / 44 / 64 (H1 clamps to 38 on mobile) */
-  --text-xs: 13px;
-  --text-sm: 15px;
-  --text-base: 17px;
-  --text-lg: 22px;
-  --text-xl: 32px;
-  --text-2xl: 44px;
-  --text-3xl: 64px;
+  --font-sans: var(--font-inter), -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-body {
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.6;
+@layer base {
+  body {
+    background: var(--canvas);
+    color: var(--body);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Display sits at weight 400 with negative tracking — editorial calm, never bold */
+  h1,
+  h2 {
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
 }
 
 ::selection {
-  background: var(--signal);
-  color: var(--paper);
+  background: var(--primary);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--signal);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
-}
-
-h1,
-h2 {
-  font-family: var(--font-display);
-  font-variation-settings: "wdth" 112;
-  font-weight: 650;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-  text-wrap: balance;
 }
 
 /* Scroll reveals (BRAND.md motion rules) — hidden only after JS takes over */
@@ -152,12 +161,4 @@ h2 {
   .digit-roll {
     animation: none;
   }
-}
-
-/* Gradient text for headline accents */
-.gradient-text {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }

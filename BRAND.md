@@ -55,31 +55,36 @@ Everything below applies to all copy and UI — landing page, app, docs, emails,
 
 ## Visual identity
 
+> Token source of truth: `DESIGN.md` (repo parent) — a quiet, institutional, white-canvas system with one blue. The summary below is what you need day-to-day.
+
 ### The motif: the aperture
 
-Skope = scope, a lens. Consent is an aperture: **nothing flows until it opens.** The iris mark is the logo, the favicon, the hero animation, section dividers, and the scanner score gauge. One signature interactive moment (the hero); everywhere else it stays quiet and static.
+Skope = scope, a lens. Consent is an aperture: **nothing flows until it opens.** The iris mark is the logo, the favicon, the hero animation, and the scanner score gauge. One signature interactive moment (the hero card); everywhere else it stays quiet and static.
 
 ### Palette
 
 | Token | Hex | Use |
 |---|---|---|
-| `--ink` | `#0B0F1C` | page background |
-| `--slate` | `#151C2E` | raised surfaces, cards |
-| `--hairline` | `#232B40` | borders, 1px rules |
-| `--paper` | `#F2F5FA` | primary text on dark |
-| `--mist` | `#95A1B8` | secondary text |
-| `--lens` | `#2BD9C7` | consent teal — CTAs, "allowed" states |
-| `--signal` | `#6E5BFF` | violet — links, focus rings, gradient partner |
-| `--amber` | `#FFB454` | deadlines and warnings only |
+| `--canvas` | `#ffffff` | the default page floor |
+| `--ink` | `#0a0b0d` | display headings, emphasis text |
+| `--body` | `#5b616e` | running text |
+| `--muted` / `--muted-soft` | `#7c828a` / `#a8acb3` | captions, secondary |
+| `--hairline` / `--hairline-soft` | `#dee1e6` / `#eef0f3` | 1px dividers, card outlines |
+| `--surface-soft` / `--surface-strong` | `#f7f7f7` / `#eef0f3` | alternating bands, secondary buttons |
+| `--surface-dark` / elevated | `#0a0b0d` / `#16181c` | full-bleed dark heroes, featured tier, CTA bands |
+| `--primary` | `#0052ff` | **the only accent.** CTAs, inline links, "allowed" flow |
 
-Gradient `linear-gradient(120deg, var(--lens), var(--signal))` — used sparingly: hero headline underline, primary CTA hover, aperture glow. Amber never decorates; it only marks deadlines.
+One blue, used scarcely — a couple of moments per band. On dark surfaces use the luminance-adjusted `--primary-on-dark` `#3c7dff`. No gradients, no second accent. Depth comes from card-on-card layering, never decorative shadows.
 
 ### Typography
 
-- **Display:** Archivo (variable), SemiExpanded, 600–700, leading 1.05. H1/H2 only.
-- **Body/UI:** Instrument Sans 400/500, leading 1.6, max line length 68ch.
-- **Mono:** IBM Plex Mono — code, the install one-liner, consent receipts, countdown digits, eyebrow labels. The mono face is part of the brand: receipts render as terminal-style cards.
-- **Scale:** 13 / 15 / 17 (body) / 22 / 32 / 44 / 64 (desktop H1, clamps to 38 on mobile).
+- **One family: Inter.** Display = weight **400** with negative tracking (-0.025em to -0.03em) — never bold a headline; calm is the brand. Body 400, titles/buttons 600.
+- **Mono: Geist Mono** — code, the install one-liner, consent receipts, countdown digits, eyebrow labels, every number. Receipts render as terminal-style cards.
+- **Scale:** 13 / 14 / 15 / 16 (body) / 18 / 32 / 52 (section heads) / 72–80 (hero, clamps to 40 on mobile).
+
+### Geometry
+
+Pills for everything interactive (`rounded-full` CTAs, badges, toggles), 24px radius (`rounded-3xl`) for cards, full circles for icon plates. Sharp corners don't exist. Sections breathe at 96px; the page rotates white → soft-gray → dark bands.
 
 ### Motion
 
