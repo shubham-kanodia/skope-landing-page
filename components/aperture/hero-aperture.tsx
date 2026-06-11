@@ -25,7 +25,6 @@ const C = {
   dot: "#7c828a",
   dotAllowed: "#3c7dff",
   ring: "rgba(255,255,255,0.16)",
-  disc: "#0e1014",
   bladeEdge: "rgba(255,255,255,0.16)",
   glow: "#0052ff",
 };
@@ -91,8 +90,8 @@ export function HeroAperture() {
       for (let i = 0; i < BLADE_COUNT; i++) {
         bladeRefs.current[i]?.setAttribute("d", paths[i]);
       }
-      glowRef.current?.setAttribute("r", String(hc * MAX_HOLE));
-      glowRef.current?.setAttribute("opacity", String(0.35 * hc));
+      glowRef.current?.setAttribute("r", String(hc * MAX_HOLE * 1.5));
+      glowRef.current?.setAttribute("opacity", String(hc));
 
       const open = hc > 0.06;
       for (let i = 0; i < particles.length; i++) {
@@ -205,9 +204,22 @@ export function HeroAperture() {
           />
         ))}
 
-        {/* The aperture */}
-        <circle cx={CX} cy={CY} r={R} fill={C.disc} />
-        <circle ref={glowRef} cx={CX} cy={CY} r={staticOpen * MAX_HOLE} fill={C.glow} opacity={0.35 * staticOpen} />
+        {/* The aperture — center stays transparent; consent shows as a soft bloom */}
+        <defs>
+          <radialGradient id="iris-glow">
+            <stop offset="0%" stopColor={C.glow} stopOpacity="0.4" />
+            <stop offset="55%" stopColor={C.glow} stopOpacity="0.16" />
+            <stop offset="100%" stopColor={C.glow} stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        <circle
+          ref={glowRef}
+          cx={CX}
+          cy={CY}
+          r={staticOpen * MAX_HOLE * 1.5}
+          fill="url(#iris-glow)"
+          opacity={staticOpen}
+        />
         <circle
           className="aperture-ring"
           style={{ ["--ring-len" as string]: RING_LEN }}

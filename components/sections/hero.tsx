@@ -15,10 +15,13 @@ export function Hero() {
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
           <div className="min-w-0">
             <p
-              className="hero-enter inline-flex rounded-full bg-white/[0.08] px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.06em] text-on-dark-soft sm:whitespace-nowrap"
+              className="hero-enter inline-flex items-center gap-2 rounded-full bg-white/[0.08] px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.06em] text-on-dark-soft"
               style={enter(0.5)}
             >
-              DPDP rules are live · full enforcement 13 May 2027
+              <span aria-hidden="true" className="text-[13px] leading-none">
+                🇮🇳
+              </span>
+              Made in India
             </p>
 
             <h1
@@ -52,10 +55,6 @@ export function Hero() {
                 Scan my website
               </a>
             </div>
-
-            <p className="hero-enter mt-8 text-[13px] text-muted" style={enter(1.0)}>
-              Built for WordPress · Shopify · custom sites · Made in India · Data stored in India
-            </p>
           </div>
 
           <div className="hero-enter w-full min-w-0" style={enter(0.7)}>
