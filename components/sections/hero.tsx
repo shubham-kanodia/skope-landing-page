@@ -58,8 +58,8 @@ export function Hero() {
             </p>
           </div>
 
-          <div className="hero-enter min-w-0 lg:justify-self-end" style={enter(0.7)}>
-            <div className="w-full max-w-[560px]">
+          <div className="hero-enter w-full min-w-0" style={enter(0.7)}>
+            <div className="mx-auto w-full max-w-[560px] lg:mr-0">
               <HeroAperture />
             </div>
           </div>
