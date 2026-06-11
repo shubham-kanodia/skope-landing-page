@@ -1,4 +1,4 @@
-import { ApertureMark } from "@/components/aperture/aperture";
+import Image from "next/image";
 
 const COLUMNS = [
   {
@@ -37,7 +37,7 @@ export function Footer() {
         <div className="flex flex-col justify-between gap-12 sm:flex-row">
           <div>
             <div className="flex items-center gap-2.5 text-[17px] font-semibold text-ink">
-              <ApertureMark size={26} tone="light" />
+              <Image src="/icon.png" alt="Skope" width={26} height={26} />
               skope
             </div>
             <p className="mt-4 max-w-xs text-sm">

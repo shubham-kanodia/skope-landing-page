@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ApertureMark } from "@/components/aperture/aperture";
+import Image from "next/image";
 
 const LINKS = [
   { href: "#product", label: "Product" },
@@ -28,7 +28,7 @@ export function Nav() {
     >
       <nav className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6">
         <a href="#" className="flex items-center gap-2.5 text-[17px] font-semibold text-white">
-          <ApertureMark size={26} tone="dark" />
+          <Image src="/icon.png" alt="Skope" width={26} height={26} priority />
           skope
         </a>
         <div className="hidden items-center gap-8 sm:flex">
