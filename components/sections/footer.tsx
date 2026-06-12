@@ -4,10 +4,9 @@ const COLUMNS = [
   {
     heading: "Product",
     links: [
-      { label: "Product", href: "#product" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Scanner", href: "#scanner" },
-      { label: "Docs", href: "https://docs.skope.network" },
+      { label: "Product", href: "/#product" },
+      { label: "Pricing", href: "/#pricing" },
+      { label: "Scanner", href: "/#scanner" },
       { label: "Blog", href: "/blog" },
     ],
   },
@@ -15,19 +14,9 @@ const COLUMNS = [
     heading: "Legal",
     links: [
       // [HUMAN] counsel review before launch
-      { label: "Privacy policy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "DPA", href: "/dpa" },
-      { label: "Refunds", href: "/refunds" },
+      { label: "Privacy policy", href: "/privacy" }
     ],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "Grievance officer", href: "/grievance" },
-      { label: "Status", href: "https://status.skope.network" },
-    ],
-  },
+  }
 ];
 
 export function Footer() {
@@ -41,10 +30,10 @@ export function Footer() {
               skope
             </div>
             <p className="mt-4 max-w-xs text-sm">
-              The DPDP consent kit for small Indian teams. Made in Pune, India.
+              The DPDP consent kit for small Indian teams. Made in India.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-12 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-12 sm:grid-cols-2">
             {COLUMNS.map((col) => (
               <div key={col.heading}>
                 <h3 className="text-sm font-semibold text-ink">{col.heading}</h3>

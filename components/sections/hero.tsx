@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { HeroAperture } from "@/components/aperture/hero-aperture";
 
-const SIGNUP_URL = "https://app.skope.network/signup";
+const SIGNUP_URL = "https://app.skope.network/login";
 
 // Spec A4: aperture draws first (500ms), headline rises, install card fades in. ≤1.2s total.
 const enter = (delay: number): CSSProperties =>
@@ -9,7 +9,7 @@ const enter = (delay: number): CSSProperties =>
 
 export function Hero() {
   return (
-    <section className="bg-surface-dark">
+    <section data-section="hero" className="bg-surface-dark">
       {/* Fill the viewport below the 64px nav so the fold never shows the next band */}
       <div className="mx-auto flex min-h-[calc(100svh-64px)] w-full max-w-[1200px] flex-col justify-center px-6 py-16">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
@@ -28,33 +28,45 @@ export function Hero() {
               className="hero-enter mt-7 text-[clamp(38px,4.6vw,60px)] leading-[1.04] tracking-[-0.03em] text-white"
               style={enter(0.6)}
             >
-              India&apos;s data law applies to you.{" "}
-              <span className="text-primary-on-dark">Yes, you.</span>
+              India&apos;s data law can cost more than you make.{" "}
+              <span className="text-primary-on-dark">We&apos;ve got your back.</span>
             </h1>
 
             <p
-              className="hero-enter mt-6 max-w-[46ch] text-[17px] leading-relaxed text-on-dark-soft"
+              className="hero-enter mt-6 max-w-[48ch] text-[17px] leading-relaxed text-on-dark-soft"
               style={enter(0.75)}
             >
-              Skope is the DPDP consent kit for small teams. One script tag. Bilingual banner,
-              purpose-wise consent, audit-proof records. Live in 30 minutes — no demo calls, no
+              Penalties run to ₹250 crores, with no exemption for small teams. Skope&apos;s AI-driven process
+              makes you compliant in 30 minutes or less: a consent banner in every Indian language, purpose-wise
+              consent, and audit-proof records, every line yours to customise. No demo calls, no
               lawyers on retainer.
             </p>
 
             <div className="hero-enter mt-9 flex flex-wrap items-center gap-3" style={enter(0.85)}>
               <a
                 href={SIGNUP_URL}
+                data-track="cta_click"
+                data-track-cta="hero_start_free"
                 className="inline-flex h-14 items-center rounded-full bg-primary px-8 text-base font-semibold text-white transition-colors hover:bg-primary-active"
               >
                 Start free
               </a>
               <a
                 href="#scanner"
+                data-track="cta_click"
+                data-track-cta="hero_scan_website"
                 className="inline-flex h-14 items-center rounded-full border border-white/25 px-8 text-base font-semibold text-white transition-colors hover:border-white/60"
               >
                 Scan my website
               </a>
             </div>
+
+            <p
+              className="hero-enter mt-6 font-mono text-[11px] tracking-[0.02em] text-muted"
+              style={enter(0.95)}
+            >
+              Free tier · no card · no sales call · cancel in one click
+            </p>
           </div>
 
           <div className="hero-enter w-full min-w-0" style={enter(0.7)}>

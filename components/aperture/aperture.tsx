@@ -1,44 +1,65 @@
 /**
- * The aperture iris — Skope's brand motif (see BRAND.md).
+ * The aperture iris, Skope's brand motif (see BRAND.md).
  *
- * Geometry: N blades, each the region between a chord and the outer circle.
- * Every chord is tangent to an inner circle of radius `h`; the union of the
- * blades leaves a regular N-gon hole of inradius `h`. h = 0 → fully closed.
+ * The iris is a regular N-gon hole of inradius `open * maxHole`, punched out of
+ * a solid disk so the metal always reads solid as it opens. open = 0 → shut.
  */
 
-export const BLADE_COUNT = 7;
+export const BLADE_COUNT = 8;
 
-export function bladePaths(
+/**
+ * The aperture hole as a regular N-gon of inradius `open * maxHole`, rotated by
+ * `spin`. Returns an SVG subpath ("M … Z"), or "" when effectively shut. This is
+ * the clean opening the iris reveals — no thin slivers, no star.
+ */
+export function irisPolygon(
+  open: number,
+  cx: number,
+  cy: number,
+  maxHole: number,
+  n: number = BLADE_COUNT,
+  spin: number = 0,
+): string {
+  const h = Math.max(0, Math.min(1, open)) * maxHole;
+  if (h <= 0.5) return "";
+  const vr = h / Math.cos(Math.PI / n); // circumradius for a polygon of inradius h
+  let d = "";
+  for (let i = 0; i < n; i++) {
+    const a = spin + Math.PI / n + (i * 2 * Math.PI) / n;
+    const x = cx + vr * Math.cos(a);
+    const y = cy + vr * Math.sin(a);
+    d += i === 0 ? `M ${x.toFixed(2)} ${y.toFixed(2)}` : ` L ${x.toFixed(2)} ${y.toFixed(2)}`;
+  }
+  return `${d} Z`;
+}
+
+/**
+ * The iris face: a solid disk of radius `R` with the polygon hole punched out
+ * (evenodd fill). One opaque shape, so the metal always reads solid as it opens.
+ */
+export function irisFacePath(
   open: number,
   cx: number,
   cy: number,
   R: number,
   maxHole: number,
   n: number = BLADE_COUNT,
-): string[] {
-  const h = Math.max(0, Math.min(1, open)) * maxHole;
-  const t = Math.sqrt(R * R - h * h);
-  const phi = Math.atan2(t, h);
-  const paths: string[] = [];
-  for (let i = 0; i < n; i++) {
-    const theta = (i * 2 * Math.PI) / n;
-    const p1x = cx + R * Math.cos(theta + phi);
-    const p1y = cy + R * Math.sin(theta + phi);
-    const p2x = cx + R * Math.cos(theta - phi);
-    const p2y = cy + R * Math.sin(theta - phi);
-    paths.push(
-      `M ${p1x.toFixed(2)} ${p1y.toFixed(2)} L ${p2x.toFixed(2)} ${p2y.toFixed(2)} A ${R} ${R} 0 0 1 ${p1x.toFixed(2)} ${p1y.toFixed(2)} Z`,
-    );
-  }
-  return paths;
+  spin: number = 0,
+): string {
+  const outer =
+    `M ${(cx - R).toFixed(2)} ${cy.toFixed(2)} ` +
+    `A ${R} ${R} 0 1 0 ${(cx + R).toFixed(2)} ${cy.toFixed(2)} ` +
+    `A ${R} ${R} 0 1 0 ${(cx - R).toFixed(2)} ${cy.toFixed(2)} Z`;
+  const hole = irisPolygon(open, cx, cy, maxHole, n, spin);
+  return hole ? `${outer} ${hole}` : outer;
 }
 
 const TONES = {
-  dark: { ring: "rgba(255,255,255,0.16)", blade: "#16181c", edge: "#3c7dff" },
-  light: { ring: "#dee1e6", blade: "#eef0f3", edge: "#0052ff" },
+  dark: { ring: "rgba(255,255,255,0.16)", face: "#1c2027", edge: "#3c7dff" },
+  light: { ring: "#dee1e6", face: "#eef0f3", edge: "#0052ff" },
 };
 
-/** Static aperture mark — logo, dividers, favicon source. */
+/** Static aperture mark, logo, dividers, favicon source. */
 export function ApertureMark({
   open = 0.55,
   size = 24,
@@ -50,7 +71,8 @@ export function ApertureMark({
   tone?: keyof typeof TONES;
   className?: string;
 }) {
-  const paths = bladePaths(open, 50, 50, 46, 30);
+  const face = irisFacePath(open, 50, 50, 46, 30, 8);
+  const hole = irisPolygon(open, 50, 50, 30, 8);
   const c = TONES[tone];
   return (
     <svg
@@ -61,9 +83,8 @@ export function ApertureMark({
       className={className}
     >
       <circle cx="50" cy="50" r="46" fill="none" stroke={c.ring} strokeWidth="3" />
-      {paths.map((d, i) => (
-        <path key={i} d={d} fill={c.blade} stroke={c.edge} strokeWidth="1.5" />
-      ))}
+      <path d={face} fillRule="evenodd" fill={c.face} />
+      {hole && <path d={hole} fill="none" stroke={c.edge} strokeWidth="2.5" strokeLinejoin="round" />}
     </svg>
   );
 }

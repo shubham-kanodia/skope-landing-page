@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@/lib/analytics";
 
 const SNIPPET = `<script src="https://cdn.skope.network/skope.js" data-site="sk_live_xxxx" defer></script>`;
 
@@ -10,10 +11,11 @@ export function InstallSnippet() {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(SNIPPET);
+      track("copy_install_snippet");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // clipboard unavailable — leave the snippet selectable
+      // clipboard unavailable, leave the snippet selectable
     }
   };
 

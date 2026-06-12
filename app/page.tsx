@@ -6,6 +6,7 @@ import { Features } from "@/components/sections/features";
 import { Scanner } from "@/components/sections/scanner";
 import { Deadline } from "@/components/sections/deadline";
 import { Pricing } from "@/components/sections/pricing";
+import { Founding } from "@/components/sections/founding";
 import { Faq } from "@/components/sections/faq";
 import { FinalCta } from "@/components/sections/final-cta";
 import { Footer } from "@/components/sections/footer";
@@ -22,6 +23,7 @@ export default function Home() {
         <Scanner />
         <Deadline />
         <Pricing />
+        <Founding />
         <Faq />
         <FinalCta />
       </main>

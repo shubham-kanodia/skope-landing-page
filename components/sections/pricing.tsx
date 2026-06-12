@@ -1,41 +1,34 @@
 import { Reveal } from "@/components/ui/reveal";
 
-const SIGNUP_URL = "https://app.skope.network/signup";
+const SIGNUP_URL = "https://app.skope.network/login";
 
 const PLANS = [
   {
     name: "Free",
     price: "₹0",
     tagline: "For trying it properly.",
-    features: ["1 domain", "1,000 consents/mo", "English + 1 language", "Skope badge"],
+    features: ["1 site", "5,000 consents/mo", "All Indian languages", "AI privacy notice + data rights", "Skope badge on banner"],
     featured: false,
   },
   {
     name: "Starter",
     price: "₹999",
-    tagline: "Everything a single site needs.",
-    features: ["1 domain", "25k consents/mo", "All languages", "Remove badge", "Form receipts", "Email support"],
+    tagline: "Everything a single store needs.",
+    features: ["3 sites", "25,000 consents/mo", "All Indian languages", "AI privacy notice + data rights", "Email support"],
     featured: false,
   },
   {
     name: "Growth",
     price: "₹2,999",
     tagline: "For teams getting serious.",
-    features: [
-      "3 domains",
-      "150k consents/mo",
-      "Preference center theming",
-      "Consent analytics",
-      "API access",
-      "Priority support",
-    ],
+    features: ["10 sites", "100,000 consents/mo", "3 team seats", "Everything in Starter", "Priority support"],
     featured: true,
   },
   {
     name: "Scale",
-    price: "₹4,999",
+    price: "₹7,999",
     tagline: "For multi-site operators.",
-    features: ["10 domains", "500k consents/mo", "Webhooks", "Audit exports", "Agency sub-accounts (coming soon)"],
+    features: ["Unlimited sites", "500,000 consents/mo", "10 team seats", "No Skope branding", "Everything in Growth"],
     featured: false,
   },
 ];
@@ -96,6 +89,9 @@ export function Pricing() {
               </ul>
               <a
                 href={SIGNUP_URL}
+                data-track="cta_click"
+                data-track-cta="pricing_start_free"
+                data-track-plan={plan.name.toLowerCase()}
                 className={`mt-9 inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-semibold transition-colors ${
                   plan.featured
                     ? "bg-primary text-white hover:bg-primary-active"
@@ -109,7 +105,8 @@ export function Pricing() {
         ))}
       </div>
       <p className="mt-10 text-center text-[13px] text-body">
-        Prices exclude GST. Annual = 2 months free.
+        Sign up before 12 July 2026 and Growth is free for six months — payments don&apos;t even
+        open until August. Prices exclude GST. Annual = 2 months free.
       </p>
     </section>
   );

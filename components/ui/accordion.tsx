@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useId } from "react";
+import { track } from "@/lib/analytics";
 
 export function AccordionItem({
   question,
@@ -18,7 +19,10 @@ export function AccordionItem({
         type="button"
         aria-expanded={open}
         aria-controls={`${id}-panel`}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (!open) track("faq_open", { question });
+          setOpen(!open);
+        }}
         className="flex w-full items-center justify-between gap-4 py-6 text-left text-base font-semibold text-ink"
       >
         {question}

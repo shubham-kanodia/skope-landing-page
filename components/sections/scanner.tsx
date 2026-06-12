@@ -50,79 +50,21 @@ export function Scanner() {
           </Reveal>
           <Reveal index={1}>
             <p className="mx-auto mt-5 max-w-[58ch] text-[15px]">
-              We scan your site for trackers, pre-consent cookies, notice coverage, and language
-              support — then email you the full readiness report.
+              We check your homepage for trackers, pre-consent cookies, a privacy notice, and a
+              grievance contact, then score it and email you the fixes.
             </p>
           </Reveal>
-        </div>
-
-        <Reveal index={2}>
-          {status === "done" ? (
-            <div className="mx-auto mt-12 max-w-xl rounded-3xl bg-canvas p-8 text-left">
-              <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-primary">
-                Report queued
-              </p>
-              <h3 className="mt-3 text-lg font-semibold text-ink">Your report is on its way.</h3>
-              <p className="mt-2 text-[15px]">
-                We&apos;ll scan <span className="font-mono text-sm text-ink">{scannedDomain}</span>{" "}
-                and email the full DPDP readiness report to you.
-              </p>
-              <a
-                href="https://app.skope.network/signup"
-                className="mt-7 inline-flex h-12 items-center rounded-full bg-primary px-7 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active"
-              >
-                Fix it in 30 minutes — start free
-              </a>
-            </div>
-          ) : (
-            <form
-              onSubmit={submit}
-              className="mx-auto mt-12 flex max-w-xl flex-col gap-3 rounded-3xl bg-canvas p-8"
+          <Reveal index={2}>
+            <a
+              href="https://app.skope.network/compliance-checker"
+              data-track="cta_click"
+              data-track-cta="scanner_open_checker"
+              className="mt-4 inline-flex items-center gap-1 text-[14px] font-semibold text-primary hover:text-primary-active"
             >
-              <label className="sr-only" htmlFor="scan-domain">
-                Your website domain
-              </label>
-              <input
-                id="scan-domain"
-                type="text"
-                required
-                value={domain}
-                onChange={(e) => setDomain(e.target.value)}
-                placeholder="yourstore.in"
-                autoComplete="url"
-                className={inputClass}
-              />
-              <label className="sr-only" htmlFor="scan-email">
-                Your email
-              </label>
-              <input
-                id="scan-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.in"
-                autoComplete="email"
-                className={inputClass}
-              />
-              <button
-                type="submit"
-                disabled={status === "submitting"}
-                className="mt-1 inline-flex h-12 items-center justify-center rounded-full bg-primary px-7 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active disabled:bg-[#a8b8cc]"
-              >
-                {status === "submitting" ? "Queuing your scan…" : "Scan my website"}
-              </button>
-              {error && (
-                <p role="alert" className="text-sm text-[#cf202f]">
-                  {error}
-                </p>
-              )}
-              <p className="text-[13px] text-body">
-                One scan per site. We email the report — nothing else, no spam.
-              </p>
-            </form>
-          )}
-        </Reveal>
+              Prefer it instantly? Open the live checker →
+            </a>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

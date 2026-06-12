@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const LINKS = [
-  { href: "#product", label: "Product" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#scanner", label: "Scanner" },
-  { href: "https://docs.skope.network", label: "Docs" },
+  { href: "/#product", label: "Product" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#scanner", label: "Scanner" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Nav() {
@@ -27,7 +27,7 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2.5 text-[17px] font-semibold text-white">
+        <a href="/" className="flex items-center gap-2.5 text-[17px] font-semibold text-white">
           <Image src="/icon.png" alt="Skope" width={26} height={26} priority />
           skope
         </a>
@@ -36,6 +36,8 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
+              data-track="nav_click"
+              data-track-label={l.label.toLowerCase()}
               className="text-sm font-medium text-on-dark-soft transition-colors hover:text-white"
             >
               {l.label}
@@ -43,7 +45,9 @@ export function Nav() {
           ))}
         </div>
         <a
-          href="https://app.skope.network/signup"
+          href="https://app.skope.network/login"
+          data-track="cta_click"
+          data-track-cta="nav_get_compliant"
           className="inline-flex h-11 items-center rounded-full bg-primary px-5 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active"
         >
           Get compliant

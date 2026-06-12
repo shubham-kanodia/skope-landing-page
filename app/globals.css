@@ -141,6 +141,24 @@
   }
 }
 
+/* Hero data stream: flowing dashes march down the consent lanes */
+.stream-flow {
+  animation: stream-flow 1.6s linear infinite;
+  animation-duration: var(--dur, 1.6s);
+}
+
+@keyframes stream-flow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stream-flow {
+    animation: none;
+  }
+}
+
 /* Countdown digits: 200ms mono roll on change (spec A4.3) */
 .digit-roll {
   animation: digit-roll 200ms ease-out;

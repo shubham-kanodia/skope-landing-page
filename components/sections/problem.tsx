@@ -6,8 +6,8 @@ const BEATS = [
     body: "The DPDP Rules were notified in Nov 2025. Enforcement has already begun.",
   },
   {
-    title: "Penalties go to ₹250 crore.",
-    body: "Written for big tech. Applies to your Shopify store.",
+    title: "Penalties go to ₹250 crores.",
+    body: "Written for big tech. Applies to your business too.",
   },
   {
     title: "The big-vendor route doesn't fit you.",
@@ -17,7 +17,7 @@ const BEATS = [
 
 export function Problem() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 py-24">
+    <section data-section="problem" className="mx-auto max-w-[1200px] px-6 py-24">
       <Reveal>
         <h2 className="max-w-3xl text-[clamp(32px,4vw,52px)]">
           Collecting even a name and email makes you a Data Fiduciary.
