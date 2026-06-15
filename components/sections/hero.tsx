@@ -1,9 +1,9 @@
 import type { CSSProperties } from "react";
-import { HeroAperture } from "@/components/aperture/hero-aperture";
+import { HeroCarousel } from "@/components/hero-carousel";
 
 const SIGNUP_URL = "https://app.skope.network/login";
 
-// Spec A4: aperture draws first (500ms), headline rises, install card fades in. ≤1.2s total.
+// Spec A4: carousel fades in with the headline, install card after. ≤1.2s total.
 const enter = (delay: number): CSSProperties =>
   ({ "--enter-delay": `${delay}s` }) as CSSProperties;
 
@@ -12,7 +12,7 @@ export function Hero() {
     <section data-section="hero" className="bg-surface-dark">
       {/* Fill the viewport below the 64px nav so the fold never shows the next band */}
       <div className="mx-auto flex min-h-[calc(100svh-64px)] w-full max-w-[1200px] flex-col justify-center px-6 py-16">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-12">
+        <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div className="min-w-0">
             <p
               className="hero-enter inline-flex items-center gap-2 rounded-full bg-white/[0.08] px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.06em] text-on-dark-soft"
@@ -42,12 +42,12 @@ export function Hero() {
               lawyers on retainer.
             </p>
 
-            <div className="hero-enter mt-9 flex flex-wrap items-center gap-3" style={enter(0.85)}>
+            <div className="hero-enter mt-8 flex flex-wrap items-center gap-3" style={enter(0.85)}>
               <a
                 href={SIGNUP_URL}
                 data-track="cta_click"
                 data-track-cta="hero_start_free"
-                className="inline-flex h-14 items-center rounded-full bg-primary px-8 text-base font-semibold text-white transition-colors hover:bg-primary-active"
+                className="inline-flex h-12 items-center rounded-full bg-primary px-7 text-[15px] font-semibold text-white transition-colors hover:bg-primary-active"
               >
                 Start free
               </a>
@@ -55,23 +55,16 @@ export function Hero() {
                 href="#scanner"
                 data-track="cta_click"
                 data-track-cta="hero_scan_website"
-                className="inline-flex h-14 items-center rounded-full border border-white/25 px-8 text-base font-semibold text-white transition-colors hover:border-white/60"
+                className="inline-flex h-12 items-center rounded-full border border-white/25 px-7 text-[15px] font-semibold text-white transition-colors hover:border-white/60"
               >
                 Scan my website
               </a>
             </div>
-
-            <p
-              className="hero-enter mt-6 font-mono text-[11px] tracking-[0.02em] text-muted"
-              style={enter(0.95)}
-            >
-              Free tier · no card · no sales call · cancel in one click
-            </p>
           </div>
 
           <div className="hero-enter w-full min-w-0" style={enter(0.7)}>
             <div className="mx-auto w-full max-w-[560px] lg:mr-0">
-              <HeroAperture />
+              <HeroCarousel />
             </div>
           </div>
         </div>

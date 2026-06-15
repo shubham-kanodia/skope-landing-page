@@ -5,7 +5,7 @@ import { useReducedMotion } from "@/lib/use-reduced-motion";
 import { irisFacePath, irisPolygon } from "./aperture";
 
 /**
- * The hero centerpiece — a machined camera lens. A stream of data funnels down
+ * The hero centerpiece, a machined camera lens. A stream of data funnels down
  * into the iris and is held at the shut lens, until consent powers the lens on
  * and irises it open, letting the stream pour through the lit core and out the
  * other side. It plays itself in a slow loop until the visitor takes the toggle.
@@ -253,7 +253,7 @@ export function HeroAperture() {
           ))}
         </g>
 
-        {/* Lens housing — seats the iris in a dark metal barrel */}
+        {/* Lens housing, seats the iris in a dark metal barrel */}
         <circle cx={CX} cy={CY} r={R + 13} fill="#0d0f13" />
         <circle cx={CX} cy={CY} r={R + 9} fill="none" stroke="url(#barrel-metal)" strokeWidth="5" />
         <circle cx={CX} cy={CY} r={R + 12} fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
@@ -284,7 +284,7 @@ export function HeroAperture() {
         {/* The solid iris face with its polygon hole */}
         <path ref={faceRef} d={staticFace} fillRule="evenodd" fill="url(#leaf-metal)" />
 
-        {/* Machined concentric grooves — turned-metal lens texture */}
+        {/* Machined concentric grooves, turned-metal lens texture */}
         <g clipPath="url(#iris-face-clip)" fill="none">
           <circle cx={CX} cy={CY} r="91" stroke="rgba(0,0,0,0.30)" strokeWidth="1.5" />
           <circle cx={CX} cy={CY} r="90" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />

@@ -10,7 +10,7 @@ export const BLADE_COUNT = 8;
 /**
  * The aperture hole as a regular N-gon of inradius `open * maxHole`, rotated by
  * `spin`. Returns an SVG subpath ("M … Z"), or "" when effectively shut. This is
- * the clean opening the iris reveals — no thin slivers, no star.
+ * the clean opening the iris reveals, no thin slivers, no star.
  */
 export function irisPolygon(
   open: number,

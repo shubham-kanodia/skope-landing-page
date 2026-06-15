@@ -8,7 +8,7 @@ let tableReady = false;
  * Scanner waitlist adapter. Persists to Neon Postgres when DATABASE_URL is
  * set; logs server-side otherwise so the form works before infra exists.
  * The M-LP3 scan pipeline (Inngest job + PDF report) replaces the internals
- * of this function — the API surface stays the same.
+ * of this function, the API surface stays the same.
  */
 export async function saveLead({ email, domain }: Lead): Promise<void> {
   const url = process.env.DATABASE_URL;

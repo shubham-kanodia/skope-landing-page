@@ -105,7 +105,7 @@ export function Pricing() {
         ))}
       </div>
       <p className="mt-10 text-center text-[13px] text-body">
-        Sign up before 12 July 2026 and Growth is free for six months — payments don&apos;t even
+        Sign up before 12 July 2026 and Growth is free for six months, payments don&apos;t even
         open until August. Prices exclude GST. Annual = 2 months free.
       </p>
     </section>

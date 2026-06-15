@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://skope.network"),
   title: "Skope, the DPDP consent kit for small teams",
   description:
-    "India's data law has teeth — ₹250 crore penalties, no exemption for small teams. One script tag makes you compliant in 30 minutes: consent banner, every Indian language, audit-proof records. Free for six months if you sign up by 12 July 2026.",
+    "India's data law has teeth, ₹250 crore penalties, no exemption for small teams. One script tag makes you compliant in 30 minutes: consent banner, every Indian language, audit-proof records. Free for six months if you sign up by 12 July 2026.",
   openGraph: {
     title: "Skope, the DPDP consent kit for small teams",
     description:
-      "India's data law applies to you. Yes, you. One script tag makes you compliant in 30 minutes — consent banner in every Indian language, purpose-wise consent, audit-proof records.",
+      "India's data law applies to you. Yes, you. One script tag makes you compliant in 30 minutes, consent banner in every Indian language, purpose-wise consent, audit-proof records.",
     url: "https://skope.network",
     siteName: "Skope",
     locale: "en_IN",

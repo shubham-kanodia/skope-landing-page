@@ -8,7 +8,7 @@ const STEPS = [
   },
   {
     title: "Make it yours.",
-    body: "Pick your purposes and languages, declare the data you collect, or let Skope read it off a screenshot of your form — and generate a DPDP privacy notice in a click. Edit every line before it goes live.",
+    body: "Pick your purposes and languages, declare the data you collect, or let Skope read it off a screenshot of your form, and generate a DPDP privacy notice in a click. Edit every line before it goes live.",
     mock: <BannerMock />,
   },
   {
