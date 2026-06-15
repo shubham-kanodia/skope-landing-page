@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
+
 import { Inter, Geist_Mono } from "next/font/google";
 import { organization } from "@/lib/blog/json-ld";
 import { Analytics } from "@/components/analytics/analytics";
@@ -54,6 +56,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
         />
         {children}
+        <Script
+          src="https://app.skope.network/skope.js"
+          data-site={process.env.NEXT_PUBLIC_SKOPE_SITE_KEY}
+          strategy="afterInteractive"
+        />
         <Analytics />
       </body>
     </html>
