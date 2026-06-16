@@ -14,7 +14,10 @@ const COLUMNS = [
     heading: "Legal",
     links: [
       // [HUMAN] counsel review before launch
-      { label: "Privacy policy", href: "/privacy" }
+      {
+        label: "Privacy policy",
+        href: `https://app.skope.network/p/${process.env.NEXT_PUBLIC_SKOPE_SITE_KEY}/privacy`,
+      },
     ],
   }
 ];
