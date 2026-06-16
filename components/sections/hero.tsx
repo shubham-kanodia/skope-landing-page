@@ -52,7 +52,7 @@ export function Hero() {
                 Start free
               </a>
               <a
-                href="#scanner"
+                href="https://app.skope.network/compliance-checker"
                 data-track="cta_click"
                 data-track-cta="hero_scan_website"
                 className="inline-flex h-12 items-center rounded-full border border-white/25 px-7 text-[15px] font-semibold text-white transition-colors hover:border-white/60"
